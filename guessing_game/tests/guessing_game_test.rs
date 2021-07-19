@@ -1,8 +1,8 @@
 #[test]
 fn generate_random_number_returns_different_numbers() {
-    let a = guessing_game::generate_random_number(1,999999);
+    let a = guessing_game::generate_random_number(1, 999999);
     let b = guessing_game::generate_random_number(1, 999999);
-    assert_ne!(a,b);
+    assert_ne!(a, b);
 }
 
 #[test]

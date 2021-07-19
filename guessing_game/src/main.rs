@@ -1,4 +1,3 @@
-
 fn main() {
     let secret_number = guessing_game::generate_random_number(1, 101);
     loop {

@@ -1,6 +1,6 @@
 use rand::Rng;
-use std::io;
 use std::cmp::Ordering;
+use std::io;
 
 pub fn generate_random_number(from: u32, under: u32) -> u32 {
     return rand::thread_rng().gen_range(from..under);
@@ -18,7 +18,7 @@ pub fn prompt_user_for_guess() -> u32 {
             Ok(num) => {
                 println!("You guessed: {}", num);
                 return num;
-            },
+            }
             Err(_) => continue,
         };
     }
