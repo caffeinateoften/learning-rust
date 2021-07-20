@@ -8,7 +8,6 @@ pub struct Config {
     pub case_sensitive: bool,
 }
 
-// Iterator Traid Methods instead of indexing
 impl Config {
     pub fn new(mut args: env::Args) -> Result<Config, &'static str> {
         args.next();
@@ -49,7 +48,6 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-// with iterators (zero-cost, imposes no additional runtime overhead)
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     contents
         .lines()
