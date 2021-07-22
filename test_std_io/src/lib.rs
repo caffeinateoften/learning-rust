@@ -1,34 +1,34 @@
 use std::io::{BufRead, Write};
 pub struct ReaderWriter<R, W> {
     reader: R,
-    writer: W
+    writer: W,
 }
 
 impl<R, W> ReaderWriter<R, W>
 where
     R: BufRead,
-    W: Write
-    {
-        pub fn new(r: R, w: W) -> ReaderWriter<R, W> {
-            ReaderWriter {
-                reader: r,
-                writer: w,
-            }
-        }
-        pub fn write_then_read(&mut self, question: &str) -> String {
-            if let Err(err) = write!(&mut self.writer, "{}", question){
-                eprintln!("Could not write output: {}", err);
-            }
-            if let Err(err) = self.writer.flush() {
-                eprintln!("Could not flush output: {}", err);
-            }
-            let mut s = String::new();
-            if let Err(err) = self.reader.read_line(&mut s){
-                eprintln!("Could not read input: {}", err);
-            }
-            s
+    W: Write,
+{
+    pub fn new(r: R, w: W) -> ReaderWriter<R, W> {
+        ReaderWriter {
+            reader: r,
+            writer: w,
         }
     }
+    pub fn write_then_read(&mut self, question: &str) -> String {
+        if let Err(err) = write!(&mut self.writer, "{}", question) {
+            eprintln!("Could not write output: {}", err);
+        }
+        if let Err(err) = self.writer.flush() {
+            eprintln!("Could not flush output: {}", err);
+        }
+        let mut s = String::new();
+        if let Err(err) = self.reader.read_line(&mut s) {
+            eprintln!("Could not read input: {}", err);
+        }
+        s
+    }
+}
 
 #[test]
 fn test_reader_writer_in_memory() {
