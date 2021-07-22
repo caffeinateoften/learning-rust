@@ -31,14 +31,11 @@ where
     }
 
 #[test]
-fn test_prompt_in_memory() {
+fn test_reader_writer_in_memory() {
     let input = b"To seek the Holy Grail";
     let mut output = Vec::new();
 
-    let mut in_memory_rw = ReaderWriter {
-        reader: &input[..],
-        writer: &mut output,
-    };
+    let mut in_memory_rw = ReaderWriter::new(&input[..], &mut output);
 
     let answer = in_memory_rw.write_then_read("What is your quest?");
 
